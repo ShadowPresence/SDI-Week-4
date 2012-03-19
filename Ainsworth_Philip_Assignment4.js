@@ -23,36 +23,38 @@ var validator = function (regEx, string) {
 
 var validate = {
 	phone: function (string) {
-		var regEx = /\(?\d{3}\)?\.?\s?-?\.?\s?\d{3}\s?-?\.?\s?\d{4}/; // -- regular expression to check for typical US phone number.
+		var regEx = /\(?\d{3}\)?[.\s-]?\d{3}[.\s-]?\d{4}/; // -- regular expression to check for typical US phone number.
 		var opt = "phone"
-		test(regEx, string, opt);
+		this.test(regEx, string, opt);
 	},
 	email: function (string) {
 		var regEx = /[\w.-]+@[\w.-]+\.\w{2,4}/; // -- regular expression to check for email address.
 		var opt = "email"
-		test(regEx, string, opt);
+		this.test(regEx, string, opt);
 	},
-	web: function (string) {
+	url: function (string) {
 		var regEx = /https?:\/\//; // -- regular expression to check for url.
-		var opt = "web"
-		test(regEx, string, opt);
-	}
-};
-
-
-var test = function (regEx, string, opt) {
-	if (opt=="web" && regEx.test(string)) {
-		console.log("The url you entered was valid.");
-	} else if (opt=="email" && regEx.test(string)){
-		console.log("The email address you entered was valid.");
-	} else if (opt=="phone" && regEx.test(string)){
-		console.log("The phone number you entered was valid.");
-	} else {
-		console.log("The info you entered was not formatted properly.");
-	};
-};
+		var opt = "url"
+		this.test(regEx, string, opt);
+	},
+	test: function (regEx, string, opt) {
+		if (regEx.test(string)) {
+			console.log("The " + opt + " you entered was valid.");
+		} else {
+			console.log("The info you entered was not formatted properly.");
+		};
+	}};
 
 
 // validator(); // -- If an argument is included, the prompt above is bypassed.
 
-validate.web("http://")
+validate.phone("123.456.7890");
+validate.phone("(123) 456-7890");
+validate.phone("1234567890");
+validate.phone("456-7890");
+validate.phone("123-456-7890");
+validate.email("something@domain.com");
+validate.email("domain.com");
+validate.url("http://www.google.com");
+validate.url("https://www.google.com");
+validate.url("www.google.com");
