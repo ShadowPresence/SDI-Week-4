@@ -14,8 +14,17 @@ var liebreary = function () {
 		var opt = "url"
 		test(regEx, string, opt);
 	};
-	var title = function () {
-		fgfgdf;
+	var title = function (string) {
+		var low = string.toLowerCase(); // -- converts string to all lowercase, just incase input is all caps or weird casing
+		var tc = low.replace(/^(.)|\s(.)/g, function($1) {return $1.toUpperCase();});
+		/* -- so much in such a small space...
+		The regular expression above performs as follows: finds the first char at the beginning of the string and stores it.
+		The | is equal to 'or' so it will match the first expression as well as anything in the second expression.
+		The next part matches any char directly after a space. The g applies this expression to the entire string (global).
+		The function was the only way I could get the values returned. $1 accesses the stored values in the above expression.
+		Everything that was stored is passed into the function and returned as an uppercase char.
+		*/
+		console.log(tc);
 	};
 	var replace = function () {
 		fgfgdf;
@@ -55,7 +64,7 @@ var liebreary = function () {
 		"phone": phone,
 		"email": email,
 		"url": url,
-		//"title": title,
+		"title": title,
 		//"replace": replace,
 		"money": money,
 		//"fuzzy": fuzzy,
@@ -80,6 +89,7 @@ library.email("domain.com");
 library.url("http://www.google.com");
 library.url("https://www.google.com");
 library.url("www.google.com");
+library.title("THIS IS A TEST OF TITLE CASE.");
 library.money("34567.45634");
 library.money("37435.7");
 library.strnumconv("42")
