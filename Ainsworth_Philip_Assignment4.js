@@ -14,6 +14,34 @@ var liebreary = function () {
 		var opt = "url"
 		test(regEx, string, opt);
 	};
+	var title = function () {
+		fgfgdf;
+	};
+	var replace = function () {
+		fgfgdf;
+	};
+	var money = function (string) {
+		something;
+	};
+	var fuzzy = function () {
+		fgfgdf;
+	};
+	var date = function () {
+		fgfgdf;
+	};
+	var strnumconv = function (string) {
+		var result = Number(string);
+		console.log(isNaN(result));
+	};
+	var range = function () {
+		fgfgdf;
+	};
+	var sum = function () {
+		fgfgdf;
+	};
+	var sort = function () {
+		fgfgdf;
+	};
 	var test = function (regEx, string, opt) {
 		if (regEx.test(string)) {
 			console.log("The " + opt + " you entered was valid.");
@@ -24,7 +52,16 @@ var liebreary = function () {
 	return {
 		"phone": phone,
 		"email": email,
-		"url": url
+		"url": url,
+		//"title": title,
+		//"replace": replace,
+		//"money": money,
+		//"fuzzy": fuzzy,
+		//"date": date,
+		"strnumconv": strnumconv,
+		//"range": range,
+		//"sum": sum,
+		//"sort": sort
 	};
 };
 
@@ -41,3 +78,5 @@ library.email("domain.com");
 library.url("http://www.google.com");
 library.url("https://www.google.com");
 library.url("www.google.com");
+library.strnumconv("42")
+library.strnumconv("123 456")
