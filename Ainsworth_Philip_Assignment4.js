@@ -1,16 +1,16 @@
 var liebreary = function () {
 	var phone = function (string) {
-		var regEx = /\(?\d{3}\)?[.\s-]?\d{3}[.\s-]?\d{4}/; // -- regular expression to check for typical US phone number.
+		var regEx = /\(?\d{3}\)?[.\s-]\d{3}[.\s-]\d{4}/; // -- \(?\d{3}\)? this section tests for 3 numerical digits, parenthesis are optional, [.\s-] this tests for a dot, a space or a dash, followed by \d{3} which tests for another 3 digits and [.\s-]\d{4} which is again a dot, a space or a dash preceeding the last 4 digits.
 		var opt = "phone"
 		test(regEx, string, opt);
 	};
 	var email = function (string) {
-		var regEx = /[\w.-]+@[\w.-]+\.\w{2,4}/; // -- regular expression to check for email address.
+		var regEx = /[\w.-_]+@[\w.-_]+\.\w{2,4}/; // -- [\w.-_]+ This tests for 0+ instances of alphanumeric chars as well as dot, dash and underscore. followed by the @ symbol another [\w.-_]+ which is again 0+ instances followed by a dot and \w{2,4} 2-4 alphanumeric chars.
 		var opt = "email"
 		test(regEx, string, opt);
 	};
 	var url = function (string) {
-		var regEx = /https?:\/\//; // -- regular expression to check for url.
+		var regEx = /https?:\/\//; // -- this tests for http:// with an optional s in https://.
 		var opt = "url"
 		test(regEx, string, opt);
 	};
