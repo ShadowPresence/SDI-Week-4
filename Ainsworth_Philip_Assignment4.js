@@ -21,7 +21,8 @@ var liebreary = function () {
 		fgfgdf;
 	};
 	var money = function (string) {
-		something;
+		var currency = Number(string)
+		console.log("$" + currency.toFixed(2));
 	};
 	var fuzzy = function () {
 		fgfgdf;
@@ -31,10 +32,11 @@ var liebreary = function () {
 	};
 	var strnumconv = function (string) {
 		var result = Number(string);
-		console.log(isNaN(result));
+		console.log(result);
 	};
 	var range = function () {
-		fgfgdf;
+		var tester = new Number();
+		var min = tester.MIN_VALUE
 	};
 	var sum = function () {
 		fgfgdf;
@@ -55,7 +57,7 @@ var liebreary = function () {
 		"url": url,
 		//"title": title,
 		//"replace": replace,
-		//"money": money,
+		"money": money,
 		//"fuzzy": fuzzy,
 		//"date": date,
 		"strnumconv": strnumconv,
@@ -78,5 +80,7 @@ library.email("domain.com");
 library.url("http://www.google.com");
 library.url("https://www.google.com");
 library.url("www.google.com");
+library.money("34567.45634");
+library.money("37435.7");
 library.strnumconv("42")
 library.strnumconv("123 456")
