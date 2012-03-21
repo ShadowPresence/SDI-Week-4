@@ -2,17 +2,25 @@ var liebreary = function () {
 	var phone = function (string) {
 		var regEx = /\(?\d{3}\)?[.\s-]\d{3}[.\s-]\d{4}/; // -- \(?\d{3}\)? this section tests for 3 numerical digits, parenthesis are optional, [.\s-] this tests for a dot, a space or a dash, followed by \d{3} which tests for another 3 digits and [.\s-]\d{4} which is again a dot, a space or a dash preceeding the last 4 digits.
 		var opt = "phone"
-		test(regEx, string, opt);
+		return test(regEx, string, opt);
 	};
 	var email = function (string) {
 		var regEx = /[\w.-_]+@[\w.-_]+\.\w{2,4}/; // -- [\w.-_]+ This tests for 0+ instances of alphanumeric chars as well as dot, dash and underscore. followed by the @ symbol another [\w.-_]+ which is again 0+ instances followed by a dot and \w{2,4} 2-4 alphanumeric chars.
 		var opt = "email"
-		test(regEx, string, opt);
+		return test(regEx, string, opt);
 	};
 	var url = function (string) {
 		var regEx = /https?:\/\//; // -- this tests for http:// with an optional s in https://.
 		var opt = "url"
-		test(regEx, string, opt);
+		return test(regEx, string, opt);
+	};
+	var test = function (regEx, string, opt) {
+		console.log("Is " + string + " formatted properly?");
+		if (regEx.test(string)) {
+			return "The " + opt + " you entered was valid.";
+		} else {
+			return "The " + opt + " you entered was not formatted properly.";
+		};
 	};
 	var titleCase = function (string) {
 		var low = string.toLowerCase(); // -- converts string to all lowercase, just incase input is all caps or weird casing
@@ -24,27 +32,25 @@ var liebreary = function () {
 		The function was the only way I could get the values returned. $1 accesses the stored values in the above expression.
 		Everything that was stored is passed into the function and returned as an uppercase char.
 		*/
-		console.log("Before: " + string);
-		console.log("After: " + tc);
+		return "Before: " + string + " -- After: " + tc;
 	};
 	var replc = function (string, a, b) {
 		var re = new RegExp(a, "g");
 		var newstr = string.replace(re, b);
-		console.log("Given: " + string + " - Replace " + a + " with " + b);
-		console.log("Result: " + newstr);
+		return "Given: " + string + " - Replace " + a + " with " + b + " -- Result: " + newstr;
 	};
 	var money = function (string) {
 		var currency = Number(string)
-		console.log("Input: " + string);
-		console.log("Output: $" + currency.toFixed(2));
+		return "Input: " + string + " -- Output: $" + currency.toFixed(2);
 	};
 	var fuzzy = function (numA, numB, perc) {
 		var range = numB*(perc/100)
 		console.log("Does " + numA + " fall within " + perc + "% of " + numB + "? (" + (numB-range) + " to " + (numB+range) + ")");
+     // -- MAKEUP: Number conditional, assignment 1
 		if (numA <= (numB + range) && numA >= (numB - range)) {
-			console.log("Yes");
+			return "Yes";
 		} else {
-			console.log("No");
+			return "No";
 		};
 	};
 	var day = function () {
@@ -56,13 +62,12 @@ var liebreary = function () {
 		var remHours = hours % 24; // -- finds the remaining hours after total hours is devided by all full days
 		var decMin = (remHours % 1)*60; // -- finds the remaining minutes as a decimal (.5 = 30 min) then convert it to minutes
 		var remMinutes = decMin.toFixed(2); // -- Keeps minutes to 2 decimal places
-		console.log("As of today: " + today);
-		console.log("There are " + days + " days, " + Math.round(remHours) + " hours and " + remMinutes + " minutes left until the end of this class.");
+		return "As of today: " + today + " there are " + days + " days, " + Math.round(remHours) + " hours and " + remMinutes + " minutes left until the end of this class.";
 	};
 	var strnumconv = function (string) {
 		var result = Number(string);
 		console.log('Input: "' + string + '"');
-		console.log(result);
+		return result;
 	};
 	var range = function (n) {
 		var array = [71, 82, 34, 12, 43, 57, 5];
@@ -77,7 +82,7 @@ var liebreary = function () {
 				};
 			};
 		};
-		console.log("The smallest number in the array: [" + array + "] greater than " + n + " is: " + min);
+		return "The smallest number in the array: [" + array + "] greater than " + n + " is: " + min;
 	};
 	var sum = function () { // -- I also found the .reduce method but it sums everything, not just numbers. I probably could of made it work but I found it after I already had this working.
 		var array = [1,2,6,18,"str",3,"32 trunks"];
@@ -87,20 +92,11 @@ var liebreary = function () {
 				total += array[i]; // -- adds each number in the array to the total
 			};
 		};
-		console.log("The sum of the numbers in the array [" + array + "] is: " + total);
+		return "The sum of the numbers in the array [" + array + "] is: " + total;
 	};
 	var sortArray = function (key) {
 		var array = [{key:2}, {key:3}, {key:1}];
-		console.log(array);
-		var sorted = array.sort(function (a, b) {return a.key - b.key});
-	};
-	var test = function (regEx, string, opt) {
-		console.log("Is " + string + " formatted properly?");
-		if (regEx.test(string)) {
-			console.log("The " + opt + " you entered was valid.");
-		} else {
-			console.log("The " + opt + " you entered was not formatted properly.");
-		};
+		return array.sort(function (a, b) {return a.key - b.key});
 	};
 	return {
 		"phone": phone,
@@ -120,25 +116,25 @@ var liebreary = function () {
 
 
 var library = liebreary();
-library.phone("123.456.7890");
-library.phone("(123) 456-7890");
-library.phone("1234567890");
-library.phone("456-7890");
-library.phone("123-456-7890");
-library.email("something@domain.com");
-library.email("domain.com");
-library.url("http://www.google.com");
-library.url("https://www.google.com");
-library.url("www.google.com");
-library.titleCase("THIS IS A TEST OF TITLE CASE.");
-library.replc("a,b,c", ",", ".");
-library.money("34567.45634");
-library.money("37435.7");
-library.fuzzy(88, 80, 10);
-library.fuzzy(28, 32, 5);
-library.day();
-library.strnumconv("42");
-library.strnumconv("123 456");
-library.range(35);
-library.sum();
-library.sortArray("key");
+console.log(library.phone("123.456.7890"));
+console.log(library.phone("(123) 456-7890"));
+console.log(library.phone("1234567890"));
+console.log(library.phone("456-7890"));
+console.log(library.phone("123-456-7890"));
+console.log(library.email("something@domain.com"));
+console.log(library.email("domain.com"));
+console.log(library.url("http://www.google.com"));
+console.log(library.url("https://www.google.com"));
+console.log(library.url("www.google.com"));
+console.log(library.titleCase("THIS IS A TEST OF TITLE CASE."));
+console.log(library.replc("a,b,c", ",", "."));
+console.log(library.money("34567.45634"));
+console.log(library.money("37435.7"));
+console.log(library.fuzzy(88, 80, 10));
+console.log(library.fuzzy(28, 32, 5));
+console.log(library.day());
+console.log(library.strnumconv("42"));
+console.log(library.strnumconv("123 456"));
+console.log(library.range(35));
+console.log(library.sum());
+console.log(library.sortArray("key"));
