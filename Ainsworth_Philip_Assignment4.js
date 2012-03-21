@@ -79,20 +79,20 @@ var liebreary = function () {
 		};
 		console.log("The smallest number in the array: [" + array + "] greater than " + n + " is: " + min);
 	};
-	var sum = function () {
+	var sum = function () { // -- I also found the .reduce method but it sums everything, not just numbers. I probably could of made it work but I found it after I already had this working.
 		var array = [1,2,6,18,"str",3,"32 trunks"];
 		var total = 0
 		for (i=0; i < array.length; i++) {
-			if (typeof array[i] === 'number') {
-				total += array[i];
+			if (typeof array[i] === 'number') { // -- filters out all but numbers
+				total += array[i]; // -- adds each number in the array to the total
 			};
 		};
-		console.log("The sum of the numbers in the array " + array + " is: " + total);
+		console.log("The sum of the numbers in the array [" + array + "] is: " + total);
 	};
-	var sortArray = function (string) {
-		var array = [{a:2}, {a:3}, {a:1}];
+	var sortArray = function (key) {
+		var array = [{key:2}, {key:3}, {key:1}];
 		console.log(array);
-		console.log(array.sort);
+		var sorted = array.sort(function (a, b) {return a.key - b.key});
 	};
 	var test = function (regEx, string, opt) {
 		console.log("Is " + string + " formatted properly?");
@@ -141,4 +141,4 @@ library.strnumconv("42");
 library.strnumconv("123 456");
 library.range(35);
 library.sum();
-library.sortArray("a");
+library.sortArray("key");
