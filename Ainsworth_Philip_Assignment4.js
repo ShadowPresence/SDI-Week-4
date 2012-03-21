@@ -14,7 +14,7 @@ var liebreary = function () {
 		var opt = "url"
 		test(regEx, string, opt);
 	};
-	var title = function (string) {
+	var titleCase = function (string) {
 		var low = string.toLowerCase(); // -- converts string to all lowercase, just incase input is all caps or weird casing
 		var tc = low.replace(/^(.)|\s(.)/g, function($1) {return $1.toUpperCase();});
 		/* -- so much in such a small space...
@@ -26,8 +26,10 @@ var liebreary = function () {
 		*/
 		console.log(tc);
 	};
-	var replace = function () {
-		fgfgdf;
+	var replc = function (string, a, b) {
+		var re = new RegExp(a, "g");
+		var newstr = string.replace(re, b);
+		console.log(newstr);
 	};
 	var money = function (string) {
 		var currency = Number(string)
@@ -64,8 +66,8 @@ var liebreary = function () {
 		"phone": phone,
 		"email": email,
 		"url": url,
-		"title": title,
-		//"replace": replace,
+		"titleCase": titleCase,
+		"replc": replc,
 		"money": money,
 		//"fuzzy": fuzzy,
 		//"date": date,
@@ -77,7 +79,6 @@ var liebreary = function () {
 };
 
 
-// validator(); // -- If an argument is included, the prompt above is bypassed.
 var library = liebreary();
 library.phone("123.456.7890");
 library.phone("(123) 456-7890");
@@ -89,7 +90,8 @@ library.email("domain.com");
 library.url("http://www.google.com");
 library.url("https://www.google.com");
 library.url("www.google.com");
-library.title("THIS IS A TEST OF TITLE CASE.");
+library.titleCase("THIS IS A TEST OF TITLE CASE.");
+library.replc("a,b,c", ",", ".");
 library.money("34567.45634");
 library.money("37435.7");
 library.strnumconv("42")
