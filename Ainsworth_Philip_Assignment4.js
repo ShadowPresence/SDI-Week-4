@@ -69,10 +69,20 @@ var liebreary = function () {
 		var min = tester.MIN_VALUE
 	};
 	var sum = function () {
-		fgfgdf;
+		var array = [1,2,6,18,"str",3,"32trunks"];
+		var total = 0
+		for (i=0; i < array.length; i++) {
+			if (typeof array[i] === 'number') {
+				total += array[i];
+			};
+			console.log(total);
+		};
+		console.log("The sum of the number in the array is: " + total);
 	};
-	var sort = function () {
-		fgfgdf;
+	var sortArray = function (string) {
+		var array = [{a:2}, {a:3}, {a:1}];
+		console.log(array);
+		console.log(array.sort);
 	};
 	var test = function (regEx, string, opt) {
 		console.log("Is " + string + " formatted properly?");
@@ -92,9 +102,9 @@ var liebreary = function () {
 		"fuzzy": fuzzy,
 		"day": day,
 		"strnumconv": strnumconv,
-		//"range": range,
-		//"sum": sum,
-		//"sort": sort
+		"range": range,
+		"sum": sum,
+		"sortArray": sortArray
 	};
 };
 
@@ -119,3 +129,5 @@ library.fuzzy(28, 32, 5);
 library.day();
 library.strnumconv("42")
 library.strnumconv("123 456")
+library.sum();
+library.sortArray("a")
