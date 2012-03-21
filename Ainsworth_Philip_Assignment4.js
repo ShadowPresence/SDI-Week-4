@@ -64,20 +64,30 @@ var liebreary = function () {
 		console.log('Input: "' + string + '"');
 		console.log(result);
 	};
-	var range = function () {
-		var tester = new Number();
-		var min = tester.MIN_VALUE
+	var range = function (n) {
+		var array = [71, 82, 34, 12, 43, 57, 5];
+		var min = Math.max.apply(Math, array); // -- This line is a cool tip I found online. It applies the Math function to the array to return the max value.
+		/* -- Once the min value is set to the highest value in the array,
+		I can reduce it to the smallest number after passing it through a couple of if statements.
+		*/
+		for (i=0; i < array.length; i++) { 
+			if (array[i] > n) {
+				if (array[i] < min) {
+					min = array[i];
+				};
+			};
+		};
+		console.log("The smallest number in the array: [" + array + "] greater than " + n + " is: " + min);
 	};
 	var sum = function () {
-		var array = [1,2,6,18,"str",3,"32trunks"];
+		var array = [1,2,6,18,"str",3,"32 trunks"];
 		var total = 0
 		for (i=0; i < array.length; i++) {
 			if (typeof array[i] === 'number') {
 				total += array[i];
 			};
-			console.log(total);
 		};
-		console.log("The sum of the number in the array is: " + total);
+		console.log("The sum of the numbers in the array " + array + " is: " + total);
 	};
 	var sortArray = function (string) {
 		var array = [{a:2}, {a:3}, {a:1}];
@@ -127,7 +137,8 @@ library.money("37435.7");
 library.fuzzy(88, 80, 10);
 library.fuzzy(28, 32, 5);
 library.day();
-library.strnumconv("42")
-library.strnumconv("123 456")
+library.strnumconv("42");
+library.strnumconv("123 456");
+library.range(35);
 library.sum();
-library.sortArray("a")
+library.sortArray("a");
