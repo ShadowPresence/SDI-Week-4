@@ -48,11 +48,20 @@ var liebreary = function () {
 		};
 	};
 	var day = function () {
-		var today = Date.now()
-		console.log(today.getDate);
+		var today = new Date(); // -- whatever day the script is run
+		var lastDay = new Date(2012, 02, 26); // -- the end of class (12:00am March 26, 2012)
+		var minutes = (lastDay - today)/60000; // -- 60,000 is the equivalent of 1000 (to convert to seconds) * 60 (to convert to minutes)
+		var hours = minutes / 60
+		var days = Math.floor(hours/24); // -- rounds down to get number of days
+		var remHours = hours % 24; // -- finds the remaining hours after total hours is devided by all full days
+		var decMin = (remHours % 1)*60; // -- finds the remaining minutes as a decimal (.5 = 30 min) then convert it to minutes
+		var remMinutes = decMin.toFixed(2); // -- Keeps minutes to 2 decimal places
+		console.log("As of today: " + today);
+		console.log("There are " + days + " days, " + Math.round(remHours) + " hours and " + remMinutes + " minutes left until the end of this class.");
 	};
 	var strnumconv = function (string) {
 		var result = Number(string);
+		console.log('Input: "' + string + '"');
 		console.log(result);
 	};
 	var range = function () {
