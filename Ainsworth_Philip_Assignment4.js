@@ -24,22 +24,32 @@ var liebreary = function () {
 		The function was the only way I could get the values returned. $1 accesses the stored values in the above expression.
 		Everything that was stored is passed into the function and returned as an uppercase char.
 		*/
-		console.log(tc);
+		console.log("Before: " + string);
+		console.log("After: " + tc);
 	};
 	var replc = function (string, a, b) {
 		var re = new RegExp(a, "g");
 		var newstr = string.replace(re, b);
-		console.log(newstr);
+		console.log("Given: " + string + " - Replace " + a + " with " + b);
+		console.log("Result: " + newstr);
 	};
 	var money = function (string) {
 		var currency = Number(string)
-		console.log("$" + currency.toFixed(2));
+		console.log("Input: " + string);
+		console.log("Output: $" + currency.toFixed(2));
 	};
-	var fuzzy = function () {
-		fgfgdf;
+	var fuzzy = function (numA, numB, perc) {
+		var range = numB*(perc/100)
+		console.log("Does " + numA + " fall within " + perc + "% of " + numB + "? (" + (numB-range) + " to " + (numB+range) + ")");
+		if (numA <= (numB + range) && numA >= (numB - range)) {
+			console.log("Yes");
+		} else {
+			console.log("No");
+		};
 	};
-	var date = function () {
-		fgfgdf;
+	var day = function () {
+		var today = Date.now()
+		console.log(today.getDate);
 	};
 	var strnumconv = function (string) {
 		var result = Number(string);
@@ -56,10 +66,11 @@ var liebreary = function () {
 		fgfgdf;
 	};
 	var test = function (regEx, string, opt) {
+		console.log("Is " + string + " formatted properly?");
 		if (regEx.test(string)) {
 			console.log("The " + opt + " you entered was valid.");
 		} else {
-			console.log("The info you entered was not formatted properly.");
+			console.log("The " + opt + " you entered was not formatted properly.");
 		};
 	};
 	return {
@@ -69,8 +80,8 @@ var liebreary = function () {
 		"titleCase": titleCase,
 		"replc": replc,
 		"money": money,
-		//"fuzzy": fuzzy,
-		//"date": date,
+		"fuzzy": fuzzy,
+		"day": day,
 		"strnumconv": strnumconv,
 		//"range": range,
 		//"sum": sum,
@@ -94,5 +105,8 @@ library.titleCase("THIS IS A TEST OF TITLE CASE.");
 library.replc("a,b,c", ",", ".");
 library.money("34567.45634");
 library.money("37435.7");
+library.fuzzy(88, 80, 10);
+library.fuzzy(28, 32, 5);
+library.day();
 library.strnumconv("42")
 library.strnumconv("123 456")
