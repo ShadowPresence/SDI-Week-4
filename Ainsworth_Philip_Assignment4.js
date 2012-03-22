@@ -2,18 +2,22 @@ var liebreary = function () {
 	var phone = function (string) {
 		var regEx = /\(?\d{3}\)?[.\s-]\d{3}[.\s-]\d{4}/; // -- \(?\d{3}\)? this section tests for 3 numerical digits, parenthesis are optional, [.\s-] this tests for a dot, a space or a dash, followed by \d{3} which tests for another 3 digits and [.\s-]\d{4} which is again a dot, a space or a dash preceeding the last 4 digits.
 		var opt = "phone"
-		return test(regEx, string, opt);
+		return test(regEx, string, opt); // -- passes the assigned variables to the test function below
 	};
 	var email = function (string) {
 		var regEx = /[\w.-_]+@[\w.-_]+\.\w{2,4}/; // -- [\w.-_]+ This tests for 0+ instances of alphanumeric chars as well as dot, dash and underscore. followed by the @ symbol another [\w.-_]+ which is again 0+ instances followed by a dot and \w{2,4} 2-4 alphanumeric chars.
 		var opt = "email"
-		return test(regEx, string, opt);
+		return test(regEx, string, opt); // -- passes the assigned variables to the test function below
 	};
 	var url = function (string) {
 		var regEx = /https?:\/\//; // -- this tests for http:// with an optional s in https://.
 		var opt = "url"
-		return test(regEx, string, opt);
+		return test(regEx, string, opt); // -- passes the assigned variables to the test function below
 	};
+	/* -- this function is not explicitly in the assignment but is the second half of the above three.
+	Since I was trying to make the code as efficient as I know how, and the first three functions used the exact same code, I refactered them into 4 functions.
+	Basically the top functions assign variables and inputs, this test function does the work and returns the output.
+	*/
 	var test = function (regEx, string, opt) {
 		console.log("Is " + string + " formatted properly?");
 		if (regEx.test(string)) {
@@ -35,37 +39,37 @@ var liebreary = function () {
 		return "Before: " + string + " -- After: " + tc;
 	};
 	var replc = function (string, a, b) {
-		var re = new RegExp(a, "g");
-		var newstr = string.replace(re, b);
+		var re = new RegExp(a, "g"); // -- assigns a dynamic regular expression to a variable, "g" makes it process the entire string
+		var newstr = string.replace(re, b); // -- replace the regEx match (a) of string with the b variable and assign it to newstr
 		return "Given: " + string + " - Replace " + a + " with " + b + " -- Result: " + newstr;
 	};
 	var money = function (string) {
-		var currency = Number(string)
-		return "Input: " + string + " -- Output: $" + currency.toFixed(2);
+		var currency = Number(string) // -- assigns string to a number variable
+		return "Input: " + string + " -- Output: $" + currency.toFixed(2); // -- limits the decimal places to 2
 	};
 	var fuzzy = function (numA, numB, perc) {
-		var range = numB*(perc/100)
+		var range = numB*(perc/100) // -- finds the number offset of the given number numB
 		console.log("Does " + numA + " fall within " + perc + "% of " + numB + "? (" + (numB-range) + " to " + (numB+range) + ")");
      // -- MAKEUP: Number conditional, assignment 1
-		if (numA <= (numB + range) && numA >= (numB - range)) {
+		if (numA <= (numB + range) && numA >= (numB - range)) { // -- if numA falls between +/-range
 			return "Yes";
 		} else {
 			return "No";
 		};
 	};
-	var day = function () {
+	var day = function (yyyy, mm, dd) {
 		var today = new Date(); // -- whatever day the script is run
-		var lastDay = new Date(2012, 02, 26); // -- the end of class (12:00am March 26, 2012)
+		var lastDay = new Date(yyyy, (mm-1), dd); // -- the month uses an array format 0=1, 1=2, etc..
 		var minutes = (lastDay - today)/60000; // -- 60,000 is the equivalent of 1000 (to convert to seconds) * 60 (to convert to minutes)
 		var hours = minutes / 60
-		var days = Math.floor(hours/24); // -- rounds down to get number of days
+		var days = Math.floor(hours/24); // -- rounds down to get number of full days
 		var remHours = hours % 24; // -- finds the remaining hours after total hours is devided by all full days
 		var decMin = (remHours % 1)*60; // -- finds the remaining minutes as a decimal (.5 = 30 min) then convert it to minutes
 		var remMinutes = decMin.toFixed(2); // -- Keeps minutes to 2 decimal places
 		return "As of today: " + today + " there are " + days + " days, " + Math.round(remHours) + " hours and " + remMinutes + " minutes left until the end of this class.";
 	};
 	var strnumconv = function (string) {
-		var result = Number(string);
+		var result = Number(string); // -- This is pretty straight forward... converts the string to a number
 		console.log('Input: "' + string + '"');
 		return result;
 	};
@@ -76,16 +80,16 @@ var liebreary = function () {
 		I can reduce it to the smallest number after passing it through a couple of if statements.
 		*/
 		for (i=0; i < array.length; i++) { 
-			if (array[i] > n) {
-				if (array[i] < min) {
+			if (array[i] > n) { // -- filters out numbers < n
+				if (array[i] < min) { // -- this reduces min to the lowest qualifing value
 					min = array[i];
 				};
 			};
 		};
 		return "The smallest number in the array: [" + array + "] greater than " + n + " is: " + min;
 	};
-	var sum = function () { // -- I also found the .reduce method but it sums everything, not just numbers. I probably could of made it work but I found it after I already had this working.
-		var array = [1,2,6,18,"str",3,"32 trunks"];
+	var sum = function (a, b, c, d, e, f, g, h, i, j) { // -- I also found the .reduce method but it sums everything, not just numbers. I probably could of made it work but I found it after I already had this working.
+		var array = [a, b, c, d, e, f, g, h, i, j];
 		var total = 0
 		for (i=0; i < array.length; i++) {
 			if (typeof array[i] === 'number') { // -- filters out all but numbers
@@ -97,6 +101,10 @@ var liebreary = function () {
 	var sortArray = function (key) {
 		var array = [{key:2}, {key:3}, {key:1}];
 		return array.sort(function (a, b) {return a.key - b.key});
+	 /* -- by adding a sort function I was able to define a custom sort order.
+	 The function compares the 1st and 2nd array index then the 2nd and 3rd, etc. for every index available.
+	 The return value returns one of three value, -1, 0 or 1 which the sort function uses to sort the array in ascending order.
+	 */
 	};
 	return {
 		"phone": phone,
@@ -132,9 +140,9 @@ console.log(library.money("34567.45634"));
 console.log(library.money("37435.7"));
 console.log(library.fuzzy(88, 80, 10));
 console.log(library.fuzzy(28, 32, 5));
-console.log(library.day());
+console.log(library.day(2012, 03, 26));
 console.log(library.strnumconv("42"));
 console.log(library.strnumconv("123 456"));
 console.log(library.range(35));
-console.log(library.sum());
+console.log(library.sum(1,2,6,18,"str",3,"32 trunks"));
 console.log(library.sortArray("key"));
